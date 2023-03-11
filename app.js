@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// add the database 
+require('./app_server/models/db');
+
+// importing routes
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var travelRouter = require('./app_server/routes/travel');
@@ -15,6 +19,7 @@ var aboutRouter = require('./app_server/routes/about');
 
 var app = express();
 
+// handlebars setup
 var handlebars = require('express-handlebars').create({
   layoutsDir: path.join(__dirname, 'app_server', 'views/layouts'),
   partialDir: path.join(__dirname, 'app_server', 'views/partials'),
@@ -27,12 +32,14 @@ app.engine('hbs', handlebars.engine);
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'hbs');
 
+// config
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// defining routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/travel', travelRouter);
