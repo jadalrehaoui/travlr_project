@@ -38,7 +38,7 @@ const renderTravelList = (req, res, responseBody) => {
             message = "No trips yet ...";
         }
     }
-    res.render('travel', {title: pageTitle, trips: responseBody, message});
+    res.render('travel', {title: "Trips Getaways - Travel", trips: responseBody, message});
 }
 
 module.exports = {
