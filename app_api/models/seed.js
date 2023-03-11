@@ -17,10 +17,10 @@ const insertTrips = async () => {
 
 const insertRooms = async () => {
     await Room.deleteMany({}).then(
-        () => console.log("\t✓ deleted all trips")
+        () => console.log("\t✓ deleted all rooms")
     )
     await Room.insertMany(rooms).then(
-        () => console.log("\t✓ added all trips from json")
+        () => console.log("\t✓ added all rooms from json")
     )
 }
 
