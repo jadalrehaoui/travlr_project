@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div id="background">
+      {{./noop}}
+      <div id="page">
+        {{!-- the partial header --}}
+        {{> header}} 
+        {{!-- the dynamic content --}}
+        {{{body}}}
+      </div>
+    {{!-- the partial footer --}}
+    {{> footer}}
+  </body>
+  {{!-- A small script that reads the url and extract the current to be displayed as selected --}}
+  <script type="text/javascript">
+    const url = window.location.href;
+    current_route = url.split('/')[3];
+    if(current_route == "") {
+      console.log(document.getElementById('home').classList.add('selected'));
+    } else {
+      document.getElementById(current_route).classList.add('selected')
+    }
+  </script>
+</html>
