@@ -40,6 +40,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // defining routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -49,7 +50,12 @@ app.use('/news', newsRouter);
 app.use('/meals', mealsRouter);
 app.use('/contact', contactRouter);
 app.use('/about', aboutRouter);
-app.use('/api', apiRouter);
+app.use('/api', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-METHODS', 'GET, POST, PUT, DELETE');
+  next();
+}, apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
